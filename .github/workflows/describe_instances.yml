@@ -1,0 +1,21 @@
+name: Describe EC2 instances
+on: push
+jobs:
+  describe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ASIA5T6JUCU24BVS5DNZ }}
+          aws-secret-access-key: ${{ secrets.gMhPtjp0pttfQJyDIL6pahAXSYMdUe04icOkpCGe }}
+          aws-session-token: ${{ secrets.IQoJb3JpZ2luX2VjED8aCXVzLXdlc3QtMiJHMEUCIDaJgmF1TgxbnskHlqA3mmOEWklBcfGH0M6awLTk5exkAiEAyfYPfpg9mbUp9mqB9p44Bh6g5ncJbk54sq+9xvdVt28qsgIIOBAAGgw5MzYxODg4NDMzMTciDEvbiwXR7lHT90oIdCqPAnkCbYZSyX4qmf7SiPoZqKp74a67qs6jnDUIPrktVQCCr7qXTN0lQ5nrBjLQWRUVPE1vUBUm7kmC+x5/ytxaw27EmCLG0HAf8P7GM4y7lHqCM+IUlQIr4phCFJg90zDUzzjVXztUeJuPsZhsx7OLTGJ4iNwBD1Opb0N1RpYw1muAv18M6dg3q9rKra91TcJdoXt+xtdt70vTcBFj/KFRn9y3SZe9HoQ72qMhEGD9B9vKR006ESoVUmlmxTZYGJJnXeaRlIsJL60rX//fXvD69jztlYWKbt2bPGhEbNOq6zjYK6ap3DFtnt87Njt2IiNtvMmwtJGyCEJK8aejfoiU26sWu/oQa8/dYTBa9xeyijMwgZ3VtQY6nQHfzoefZqAM6EWzVvUsa+ZUdz9WDTOQcIbrNfOLz/rXh4rGQeIfdgftlfbY82SkCSUkrgLEhbgz4bAoR9TN5jha6q2nkoNK1Vt5i+QnSin0762ZsrYVLu3S0s8T1YmHfB6PgTJGD3MdzpB46O47hl6h7/scgR9S81Zqzd8SYNoes4PUzto3bq+4dyJtdVxvaYcYmK7MwPkEGKfaavm4 }}
+          aws-region: us-east-1 # Substitua pela sua região
+        env:
+          AWS_EC2_METADATA_DISABLED: true
+
+      - name: Describe AWS EC2 instances
+        run: aws ec2 describe-instances
